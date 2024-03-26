@@ -26,9 +26,9 @@ with DAG(
     @task(task_id='python_2')
     def python_2(**kwargs):
         ti = kwargs['ti']
-        result_lst = ti.xcom_pull(task_ids='tb_cycle_station_info')
+        rst = ti.xcom_pull(task_ids='tb_cycle_station_info')
         import json
         from pprint import pprint
-        pprint(json.loads(result_lst))
+        pprint(json.loads(rst))
 
     tb_cycle_station_info >> python_2()
